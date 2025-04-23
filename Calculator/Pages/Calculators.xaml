@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    x:Class="Calculator.Pages.Calculators"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#0F0F0F"
+    Loaded="ContentPage_Loaded">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Base Button Style (MUST include TargetType) -->
+            <Style x:Key="CalcButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="40"/>
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="BackgroundColor" Value="#2C2C2E"/>
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+
+            <!-- Derived Styles (all specify TargetType) -->
+            <Style x:Key="OperationButtonStyle" TargetType="Button" BasedOn="{StaticResource CalcButtonStyle}">
+                <Setter Property="BackgroundColor" Value="#34C759"/>
+                <Setter Property="FontSize" Value="32"/>
+            </Style>
+
+            <Style x:Key="EqualsButtonStyle" TargetType="Button" BasedOn="{StaticResource CalcButtonStyle}">
+                <Setter Property="BackgroundColor" Value="#007AFF"/>
+                <Setter Property="FontSize" Value="32"/>
+            </Style>
+
+            <Style x:Key="FunctionButtonStyle" TargetType="Button" BasedOn="{StaticResource CalcButtonStyle}">
+                <Setter Property="BackgroundColor" Value="#636366"/>
+            </Style>
+
+            <Style x:Key="ClearButtonStyle" TargetType="Button" BasedOn="{StaticResource CalcButtonStyle}">
+                <Setter Property="BackgroundColor" Value="#FF3B30"/>
+            </Style>
+
+            <Style x:Key="ZeroButtonStyle" TargetType="Button" BasedOn="{StaticResource CalcButtonStyle}">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="WidthRequest" Value="172"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Spacing="15" Padding="15,30,15,15">
+        <!-- Display -->
+        <Frame CornerRadius="20"
+               BackgroundColor="#1F1F1F"
+               HasShadow="False"
+               Padding="20,25"
+               HeightRequest="150">
+            <Label x:Name="lblDisplay"
+                   Text="0"
+                   FontSize="48"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   LineBreakMode="TailTruncation"/>
+        </Frame>
+
+        <!-- Calculator Grid -->
+        <Grid x:Name="gridCalculator"
+              RowSpacing="15"
+              ColumnSpacing="15"
+              VerticalOptions="EndAndExpand">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 -->
+            <Button Text="C" Clicked="OnButtonClicked" Grid.Row="0" Grid.Column="0" Style="{StaticResource ClearButtonStyle}"/>
+            <Button Text="+/-" Clicked="OnButtonClicked" Grid.Row="0" Grid.Column="1" Style="{StaticResource FunctionButtonStyle}"/>
+            <Button Text="%" Clicked="OnButtonClicked" Grid.Row="0" Grid.Column="2" Style="{StaticResource FunctionButtonStyle}"/>
+            <Button Text="÷" Clicked="OnButtonClicked" Grid.Row="0" Grid.Column="3" Style="{StaticResource OperationButtonStyle}"/>
+
+            <!-- Row 2 -->
+            <Button Text="7" Clicked="OnButtonClicked" Grid.Row="1" Grid.Column="0" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="8" Clicked="OnButtonClicked" Grid.Row="1" Grid.Column="1" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="9" Clicked="OnButtonClicked" Grid.Row="1" Grid.Column="2" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="×" Clicked="OnButtonClicked" Grid.Row="1" Grid.Column="3" Style="{StaticResource OperationButtonStyle}"/>
+
+            <!-- Row 3 -->
+            <Button Text="4" Clicked="OnButtonClicked" Grid.Row="2" Grid.Column="0" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="5" Clicked="OnButtonClicked" Grid.Row="2" Grid.Column="1" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="6" Clicked="OnButtonClicked" Grid.Row="2" Grid.Column="2" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="-" Clicked="OnButtonClicked" Grid.Row="2" Grid.Column="3" Style="{StaticResource OperationButtonStyle}"/>
+
+            <!-- Row 4 -->
+            <Button Text="1" Clicked="OnButtonClicked" Grid.Row="3" Grid.Column="0" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="2" Clicked="OnButtonClicked" Grid.Row="3" Grid.Column="1" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="3" Clicked="OnButtonClicked" Grid.Row="3" Grid.Column="2" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="+" Clicked="OnButtonClicked" Grid.Row="3" Grid.Column="3" Style="{StaticResource OperationButtonStyle}"/>
+
+            <!-- Row 5 -->
+            <Button Text="0" Clicked="OnButtonClicked" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ZeroButtonStyle}"/>
+            <Button Text="." Clicked="OnButtonClicked" Grid.Row="4" Grid.Column="2" Style="{StaticResource CalcButtonStyle}"/>
+            <Button Text="=" Clicked="OnButtonClicked" Grid.Row="4" Grid.Column="3" Style="{StaticResource EqualsButtonStyle}"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
